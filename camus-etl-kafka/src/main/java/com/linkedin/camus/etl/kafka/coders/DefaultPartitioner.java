@@ -33,7 +33,9 @@ public class DefaultPartitioner implements Partitioner {
         sb.append(topic).append("/");
         sb.append(EtlMultiOutputFormat.getDestPathTopicSubDir(context)).append("/");
         DateTime bucket = new DateTime(Long.valueOf(encodedPartition));
-        sb.append(bucket.toString(OUTPUT_DATE_FORMAT));
+	//Vimpy: corrected to use the right formatter
+        sb.append(bucket.toString(outputDateFormatter));
+        //sb.append(bucket.toString(OUTPUT_DATE_FORMAT));
         return sb.toString();
     }
 }
